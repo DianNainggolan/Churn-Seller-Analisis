@@ -1,10 +1,8 @@
 import streamlit as st
 import pandas as pd
-import joblib
+import pickle
 
-# =================================================================
 # CONFIG & MODEL
-# =================================================================
 st.set_page_config(
     page_title="Seller Churn Monitoring - Admin",
     layout="wide",
@@ -12,13 +10,12 @@ st.set_page_config(
 
 @st.cache_resource
 def load_model():
-    return joblib.load("model_terbaik.pkl")
+    with open("model_terbaik.pkl", "rb") as f:
+        return pickle.load(f)
 
 model = load_model()
 
-# =================================================================
 # SIDEBAR - INFO ADMIN
-# =================================================================
 st.sidebar.title("Panel Admin")
 st.sidebar.markdown(
     """
@@ -44,9 +41,7 @@ st.sidebar.markdown(
     """
 )
 
-# =================================================================
 # HEADER HALAMAN
-# =================================================================
 st.markdown(
     """
     <div style="padding: 10px 0 5px 0;">
@@ -68,9 +63,7 @@ with metric_col2:
 with metric_col3:
     note_placeholder = st.empty()
 
-# =================================================================
 # TABS: FORM INPUT & DOKUMENTASI
-# =================================================================
 tab_form, tab_doc = st.tabs(["🔍 Cek Risiko Seller", "📄 Dokumentasi Fitur"])
 
 with tab_form:

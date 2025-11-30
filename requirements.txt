@@ -4,10 +4,11 @@ numpy
 pandas
 
 scikit-learn==1.5.2
-imbalanced-learn==0.12.0
+imbalanced-learn==0.11.0
 xgboost==2.0.3
 
 category-encoders==2.6.3
+
 
 
 
